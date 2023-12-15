@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #search-results {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-item {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+    <title>Live Search Example</title>
+</head>
+<body>
+
+    <label for="search">Search:</label>
+    <input type="text" id="search" oninput="liveSearch(this.value)">
+    
+    <ul id="search-results"></ul>
+
+    <script>
+        function liveSearch(query) {
+            // Simulate fetching data from a server
+            fetch(`https://jsonplaceholder.typicode.com/posts?userId=1&q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the received data and update the UI
+                    displayResults(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+                return;
+            }
+
+            results.forEach(result => {
+                const listItem = document.createElement('li');
+                listItem.className = 'result-item';
+                listItem.textContent = result.title;
+                resultsContainer.appendChild(listItem);
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+body {
+    background: linear-gradient(to right bottom, #04364a, #004a68, #006089, #0075ab, #008bce, #0099db, #00a7e8, #00b5f5, #00bdeb, #1bc3df, #44c8d1, #64ccc5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0; /* Reset default margin to ensure full coverage */
+    height: 100vh; /* Set the body height to 100% of the viewport height */
+    
+   
+}
+.logo{
+font-size: 50px;
+padding: 6px;
+width: 150px;
+}
+.inp{
+
+    width: 500px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 400px;
+    margin-bottom: 100px;
+}
+.btn{
+    height: 35px;
+    width: 55px;
+    color: #008bce;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+.btn:hover{
+    background-color: #004a68;
+    color: white;
+}
+.todoList{
+    
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.tdl{
+    width: 700px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+border-radius: 10px;
+margin-left: 350px;
+}
+.completed {
+    text-decoration: line-through;
+}

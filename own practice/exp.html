@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h1 class="logo" style="color: #00b5f5">TO<span style="color: white;">DO</span></h1>
+
+    <div class="main">
+        <input type="text" name="todos" placeholder="Add Your TODOs" ng-model="addTODO" class="inp">
+        <button ng-click="addTODOs()">Add</button>
+
+        <div class="todoList" ng-repeat="todo in todos">
+            <ul>
+                <li ng-class="{ 'completed': todo.completed }">
+                    <input type="checkbox" ng-model="todo.completed">
+                    {{ todo.text }}
+                    <span ng-click="deleteTODO($index)" style="cursor: pointer; color: red;">x</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function($scope) {
+            $scope.todos = [];
+
+            $scope.addTODOs = function() {
+                $scope.todos.push({ text: $scope.addTODO, completed: false });
+                $scope.addTODO = ''; // Clear the input field after adding a TODO
+            };
+
+            $scope.deleteTODO = function(index) {
+                $scope.todos.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+</html>

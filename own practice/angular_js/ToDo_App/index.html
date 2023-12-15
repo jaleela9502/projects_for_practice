@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+  
+    <div class="main" ng-app="myApp" ng-controller = "myCtrl">
+
+        <h1 class="logo" style="color: #00b5f5">TO<span style="color: white;">DO</span></h1>
+
+<span>
+<input type="text" name="todos" placeholder="Add Your TODOs " ng-model="addTODO" class="inp">
+</span>
+<button ng-click="addTODOs()" class="btn">Add</button>
+<div class="tdl">
+<div class="todoList" ng-repeat="x in todos">
+
+    <h1 style="width: 50%">{{x}}</h1>
+    <input type="checkbox" ng-class="{'complete':x.completed}" ng-change="checked()">
+
+    <i class="fas fa-trash-alt" ng-click="deleteTODOconfirm($index)" style="margin-top: 30px"></i> 
+
+</div>
+        </div>
+
+    </div>
+    <script>
+
+        var app = angular.module("myApp",[])
+    
+        app.controller("myCtrl",function($scope){
+    $scope.todos = [];
+    $scope.addTODOs = function() {
+        for(let i = 0;i<$scope.todos.length;i++){
+if($scope.todos[i]=== $scope.addTODO){
+    alert("You already addes this task");
+}
+        }
+        $scope.todos.push($scope.addTODO);
+    };
+$scope.deleteTODOconfirm = function(x) {
+var con = confirm("Are you confirm to delete this?")
+if(con){
+    $scope.deleteTODO(x)
+}
+}    
+$scope.deleteTODO = function(x){
+        $scope.todos.splice(x,1);
+    
+};
+
+
+$scope.checked = function(){
+    if(complete){
+
+    }
+}
+
+$scope.completedTask =[];
+
+        })
+    </script>
+</body>
+
+</html>

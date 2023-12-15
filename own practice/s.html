@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <input type="checkbox" ng-model="isChecked" ng-change="checkboxChanged()"> Check me
+
+    <p ng-show="isChecked">The checkbox is checked!</p>
+    <p ng-hide="isChecked">The checkbox is not checked.</p>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function($scope) {
+            $scope.isChecked = false;
+
+            $scope.checkboxChanged = function() {
+if($scope.isChecked){
+alert("you clicked");
+}
+                console.log("Checkbox state changed. Is checked: " + $scope.isChecked);
+                // You can perform additional actions based on the checkbox state
+            };
+        });
+    </script>
+</body>
+</html>
