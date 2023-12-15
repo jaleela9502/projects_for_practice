@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        <p ng-click="filterUnder100()" style ="cursor: pointer">Under  100</p>
+        <p ng-click="filterAbove100()"style ="cursor: pointer">Above 100</p>
+        <div ng-repeat="(fruit, price) in filteredFruits">
+            <ul>
+                <li>{{ fruit }} - {{ price }} Rs</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.filter("isLessThan100", function () {
+            return function (fruits) {
+                var filteredFruits = {};
+                for (var fruit in fruits) {
+                    if (fruits.hasOwnProperty(fruit) && fruits[fruit] < 100) {
+                        filteredFruits[fruit] = fruits[fruit];
+                    }
+                }
+                return filteredFruits;
+            };
+        });
+app.filter("isGreaterThan100",function(){
+
+    return function(fruits){
+        var filteredFruits = {};
+
+        for(var fruit in fruits){
+
+            if (fruits.hasOwnProperty(fruit) && fruits[fruit] > 100) {
+                        filteredFruits[fruit] = fruits[fruit];
+                    }
+        }
+        return filteredFruits;
+    };
+});
+
+        app.controller("myCtrl", function ($scope, $filter) {
+            $scope.fruits = {
+                "Apple": 500,
+                "Banana": 100,
+                "Grapes": 130,
+                "Orange": 200,
+                "Guava": 50,
+                "Sapota": 30,
+                "Pine Apple": 100,
+                "Water Melon": 90
+            };
+
+            $scope.filteredFruits = angular.copy($scope.fruits);
+
+            $scope.filterAbove100 = function () {
+                $scope.filteredFruits = $filter("isGreaterThan100")($scope.fruits);
+            };
+            
+            $scope.filterUnder100 = function () {
+                $scope.filteredFruits = $filter("isLessThan100")($scope.fruits);
+            };
+        });
+    </script>
+</body>
+
+</html>

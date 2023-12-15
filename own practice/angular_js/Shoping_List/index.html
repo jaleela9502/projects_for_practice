@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+ <h1>Your Shopping List</h1>  
+
+ <div class="main" ng-app = "myApp" ng-controller = "myCtrl">
+    <input type="text" placeholder="Add your List" ng-model="add" class="inp">
+    <span><button ng-click = "addItems()" class="inp" id="btn"> Add</button></span>
+ <div class="list" ng-repeat = "x in lists">
+    <h2> {{x}} </h2>
+    <button ng-click = "confirmDelete($index)">Delete</button>
+ </div>
+</div>
+</body>
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.lists = ["milk", "water"];
+        
+        $scope.addItems = function () {
+            for (let i = 0; i < $scope.lists.length; i++) {
+                if ($scope.add.toLowerCase() === $scope.lists[i].toLowerCase()) {
+                    alert("You already added");
+                    return;
+                }
+            }
+            $scope.lists.push($scope.add);
+        };
+        $scope.confirmDelete = function (index) {
+                var confirmation = confirm("Are you sure you want to delete this item?");
+                if (confirmation) {
+                    $scope.deleteItems(index);
+                }
+            };
+
+        $scope.deleteItems = function (x) {
+            $scope.lists.splice(x, 1);
+        };
+    });
+</script>
+<!-- <script>
+    var app = angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+$scope.lists = ["milk","water"];
+$scope.addItems = function(){
+    for(let i =0;i < $scope.lists.length;i++){
+    if($scope.add != $scope.lists[i]){
+    $scope.lists.push($scope.add);}
+    else{
+        alert("You already added")
+    }
+}
+}
+$scope.deleteItems = function(x){
+$scope.lists.splice(x,1);
+}
+    });
+</script> -->
+
+</html>

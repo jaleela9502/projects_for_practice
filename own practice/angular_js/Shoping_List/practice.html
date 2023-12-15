@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+ <body ng-app="myApp">
+    
+    <div ng-controller="myCtrl">
+      <p ng-class="{ 'error': isError }">This is a message.</p>
+      <button ng-click="toggleError()">Toggle Error</button>
+    </div>
+    
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.isError = false;
+    
+        $scope.toggleError = function() {
+            $scope.isError = !$scope.isError;
+        };
+    });
+    </script>
+    
+    </body>
+    </html>
+    

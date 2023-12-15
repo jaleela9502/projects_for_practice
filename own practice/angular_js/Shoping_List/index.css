@@ -1,0 +1,40 @@
+h1{
+    text-align: center;
+
+}
+.main{
+    box-shadow: 0 26px 58px 0 rgba(0, 0, 0, .22), 0 5px 14px 0 rgba(0, 0, 0, .18);
+    width: 50%;
+    margin-left: 350px;
+}
+.list{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin-top: 20px;
+}
+.inp{
+    text-align: center;
+    padding: 10px;
+   
+}
+#btn{
+    background-color: green;
+    color: white;
+}
+input{
+    width: 400px;
+margin-left: 100px;
+    margin-top: 50px;
+    
+}
+.list button{
+    background-color: red;
+    color: white;
+   width: 100px;
+   height: 30px;
+   margin-top: 20px;
+}
+button{
+    border: 0;
+}
